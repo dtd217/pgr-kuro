@@ -1,0 +1,50 @@
+.ant-drawer-header .ant-drawer-header-title {
+  flex-direction: row-reverse !important;
+}
+
+.ant-drawer-title {
+  font-size: 24px !important;
+}
+
+.anticon-close svg {
+  width: 24px;
+  height: 24px;
+}
+
+.ant-drawer-header{
+  border-bottom: 1px solid #d1d5db !important;
+}
+
+.ant-menu-submenu-title {
+  padding: 0;
+  padding-inline: 0 !important;
+  margin: 0 !important;
+  width: 100% !important;
+  font-weight: 600;
+}
+
+.ant-menu-submenu-title:hover {
+  background: transparent !important;
+}
+
+.ant-menu-inline {
+  border-inline-end: 0 !important;
+}
+
+.ant-menu-submenu-arrow {
+  position: static !important;
+  font-size: 24px !important;
+}
+
+.ant-menu-item {
+  padding-left: 16px !important;
+  margin: 0 !important;
+}
+
+.ant-menu-inline {
+  background: transparent !important;
+}
+
+.ant-menu-submenu-selected > .ant-menu-submenu-title {
+  color: inherit !important;
+}

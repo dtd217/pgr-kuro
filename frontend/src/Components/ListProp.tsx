@@ -2,24 +2,42 @@ import { Select } from 'antd';
 
 import type { SelectProps } from 'antd';
 import { Link } from 'react-router-dom';
-import { petData } from '../Data/PetData';
+import { propData } from '../Data/PropData';
 
-const ListPet = () => {
-   const rankOptions: SelectProps['options'] = [
-      { label: 'S', value: 's' },
-      { label: 'A', value: 'a' },
+const ListProp = () => {
+   const classificationOptions: SelectProps['options'] = [
+      { label: '★6', value: '6' },
+      { label: '★5', value: '5' },
+      { label: '★4', value: '4' },
+      { label: '★3', value: '3' },
+      { label: '★2', value: '2' },
    ];
 
-   const testPet = petData[0]
+   const qualityOptions: SelectProps['options'] = [
+      { label: '★6', value: '6' },
+      { label: '★5', value: '5' },
+      { label: '★4', value: '4' },
+      { label: '★3', value: '3' },
+      { label: '★2', value: '2' },
+   ];
+
+   const testProp = propData[0]
 
    return (
       <div className="relative flex flex-col">
          <div className="grid grid-cols-[repeat(auto-fill,minmax(160px,1fr))] gap-4 mb-5">
             <Select
                mode="tags"
-               placeholder="Auxiliary Rank"
+               placeholder="Classification"
                maxTagCount={'responsive'}
-               options={rankOptions}
+               options={classificationOptions}
+               allowClear
+            />
+            <Select
+               mode="tags"
+               placeholder="Quality"
+               maxTagCount={'responsive'}
+               options={qualityOptions}
                allowClear
             />
          </div>
@@ -43,12 +61,13 @@ const ListPet = () => {
                         <div className="card-inner !bg-[#e8e8e8] !bg-[length:120%_120%] !bg-[80%_80%]" style={{ backgroundImage: "url('/type-small-entry-star-normal.svg')" }}>
                            <div className="card-content">
                               <div className="card-content-inner relative border-8 border-white">
-                                 <img src={testPet.image} alt="image-pet" />
+                                 <img src={`/supply-${testProp.star}.png`} alt="supply" className='absolute z-10 w-full bottom-0 right-0' />
+                                 <img src={testProp.image} alt="image-wp" />
                               </div>
                            </div>
                            <div className="card-footer w-full h-10 leading-10 px-1 text-center">
                               <div className="card-footer-inner">
-                                 <span>{testPet.name}</span>
+                                 <span>{testProp.name}</span>
                               </div>
                               <div className="bottom-left-extra" />
                               <div className="top-right-extra" />
@@ -70,4 +89,4 @@ const ListPet = () => {
    )
 }
 
-export default ListPet
+export default ListProp

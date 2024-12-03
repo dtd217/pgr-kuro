@@ -7,7 +7,7 @@ type Props = {
 
 const Layout = ({ children }: Props) => {
    return (
-      <div className='min-w-[1380px] scroll-smooth bg-no-repeat bg-center bg-cover bg-fixed flex flex-col overflow-auto'>
+      <div className='max-w-screen-2xl mx-auto min-h-screen bg-no-repeat bg-center bg-cover bg-fixed flex flex-col'>
          <Navbar />
          {children}
       </div >

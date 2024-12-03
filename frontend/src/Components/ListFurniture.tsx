@@ -2,10 +2,10 @@ import { Select } from 'antd';
 
 import type { SelectProps } from 'antd';
 import { Link } from 'react-router-dom';
-import { weaponData } from '../Data/WeaponData';
+import { furnitureData } from '../Data/FurnitureData';
 
-const ListWeapon = () => {
-   const starOptions: SelectProps['options'] = [
+const ListFurniture = () => {
+   const categoriesOptions: SelectProps['options'] = [
       { label: '★6', value: '6' },
       { label: '★5', value: '5' },
       { label: '★4', value: '4' },
@@ -13,16 +13,24 @@ const ListWeapon = () => {
       { label: '★2', value: '2' },
    ];
 
-   const typeOptions: SelectProps['options'] = [
-      { label: 'Dual Guns', value: 'dual-guns' },
-      { label: 'Katana', value: 'katana' },
-      { label: 'Bow', value: 'bow' },
-      { label: 'Saw', value: 'saw' },
-      { label: 'Greatsword', value: 'greatsword' },
-      { label: 'Cannon', value: 'cannon' },
-      { label: 'Dagger', value: 'dagger' },
-      { label: 'Scythe', value: 'scythe' },
-      { label: 'Spear Shield', value: 'spear-shield' },
+   const subCategoriesOptions: SelectProps['options'] = [
+      { label: '★6', value: '6' },
+      { label: '★5', value: '5' },
+      { label: '★4', value: '4' },
+      { label: '★3', value: '3' },
+      { label: '★2', value: '2' },
+   ];
+
+   const setsOptions: SelectProps['options'] = [
+      { label: 'Campus Summer Festival', value: 'campus-summer-festival' },
+      { label: 'Starry Night Dream', value: 'starry-night-dream' },
+      { label: 'Bear Cuisine', value: 'bear-cuisine' },
+      { label: 'Snowland', value: 'snowland' },
+      { label: 'Yinluju', value: 'yinluju' },
+      { label: 'Sakura Snow Moon', value: 'sakura-snow-moon' },
+      { label: 'Tactical Area', value: 'tactical-area' },
+      { label: 'Steam Wave', value: 'steam-wave' },
+      { label: 'Justice Desition', value: 'Justice Desition' },
       { label: 'Gauntlets', value: 'gauntlets' },
       { label: 'Amplifier', value: 'amplifier' },
       { label: 'Gun Set', value: 'gun-set' },
@@ -65,23 +73,30 @@ const ListWeapon = () => {
 
    ];
 
-   const testWea = weaponData[0]
+   const testFur = furnitureData[0]
 
    return (
       <div className="relative flex flex-col">
          <div className="grid grid-cols-[repeat(auto-fill,minmax(160px,1fr))] gap-4 mb-5">
             <Select
                mode="tags"
-               placeholder="Weapon Stars"
+               placeholder="Categories"
                maxTagCount={'responsive'}
-               options={starOptions}
+               options={categoriesOptions}
                allowClear
             />
             <Select
                mode="tags"
-               placeholder="Weapon Type"
+               placeholder="Sub Categories"
                maxTagCount={'responsive'}
-               options={typeOptions}
+               options={subCategoriesOptions}
+               allowClear
+            />
+            <Select
+               mode="tags"
+               placeholder="Sets"
+               maxTagCount={'responsive'}
+               options={setsOptions}
                allowClear
             />
          </div>
@@ -105,13 +120,13 @@ const ListWeapon = () => {
                         <div className="card-inner !bg-[#e8e8e8] !bg-[length:120%_120%] !bg-[80%_80%]" style={{ backgroundImage: "url('/type-small-entry-star-normal.svg')" }}>
                            <div className="card-content">
                               <div className="card-content-inner relative border-8 border-white">
-                                 <img src={`/supply-${testWea.star}.png`} alt="supply" className='absolute z-10 w-full bottom-0 right-0' />
-                                 <img src={testWea.image} alt="image-wp" />
+                                 <img src={`/supply-${testFur.star}.png`} alt="supply" className='absolute z-10 w-full bottom-0 right-0' />
+                                 <img src={testFur.image} alt="image-wp" />
                               </div>
                            </div>
                            <div className="card-footer w-full h-10 leading-10 px-1 text-center">
                               <div className="card-footer-inner">
-                                 <span>{testWea.name}</span>
+                                 <span>{testFur.name}</span>
                               </div>
                               <div className="bottom-left-extra" />
                               <div className="top-right-extra" />
@@ -133,4 +148,4 @@ const ListWeapon = () => {
    )
 }
 
-export default ListWeapon
+export default ListFurniture

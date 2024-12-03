@@ -2,28 +2,31 @@ import { Select } from 'antd';
 
 import type { SelectProps } from 'antd';
 import { Link } from 'react-router-dom';
-import { petData } from '../Data/PetData';
+import { dormitoryData } from '../Data/DormitoryData';
 
-const ListPet = () => {
-   const rankOptions: SelectProps['options'] = [
-      { label: 'S', value: 's' },
-      { label: 'A', value: 'a' },
+const ListDormitory = () => {
+   const mateOptions: SelectProps['options'] = [
+      { label: 'Construct', value: 'Construct' },
+      { label: 'Unique Domain', value: 'unique-domain' },
+      { label: 'Erosion', value: 'erosion' },
+      { label: 'Human', value: 'human' },
+      { label: 'Collaborators', value: 'Collaborators' },
    ];
 
-   const testPet = petData[0]
+   const testDorm = dormitoryData[0]
 
    return (
       <div className="relative flex flex-col">
          <div className="grid grid-cols-[repeat(auto-fill,minmax(160px,1fr))] gap-4 mb-5">
             <Select
                mode="tags"
-               placeholder="Auxiliary Rank"
+               placeholder="Dormitory Mates"
                maxTagCount={'responsive'}
-               options={rankOptions}
+               options={mateOptions}
                allowClear
             />
          </div>
-         <div className='w-full grid grid-cols-[repeat(auto-fill,minmax(120px,1fr))] gap-4'>
+         <div className='w-full grid grid-cols-[repeat(auto-fill,minmax(246px,1fr))] gap-4'>
             {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item, index) => (
                <Link to='#' className="relative">
                   <div className="catalogue-card figure-card">
@@ -40,15 +43,36 @@ const ListPet = () => {
                         </svg>
                      </div>
                      <div className="invalid-status">
-                        <div className="card-inner !bg-[#e8e8e8] !bg-[length:120%_120%] !bg-[80%_80%]" style={{ backgroundImage: "url('/type-small-entry-star-normal.svg')" }}>
-                           <div className="card-content">
-                              <div className="card-content-inner relative border-8 border-white">
-                                 <img src={testPet.image} alt="image-pet" />
+                        <div className="card-inner bg-no-repeat !bg-[length:100%_100%]" style={{ backgroundImage: "url('/multiple-tag-bg.png')" }}>
+                           <div className="card-content !border-none">
+                              <div className="card-content-inner relative p-4">
+                                 <div
+                                    className="size-16 bg-[length:100%_100%]"
+                                    style={{ backgroundImage: "url('/multiple-tag-empty.png')" }}
+                                 >
+                                    <img src="/aircrafts/lucia-lotus/chibi.png" alt="chibi-icon" className='size-full' />
+                                 </div>
+                                 <div className='card-tags'>
+                                    <div className="card-tag tag-type-2">
+                                       <i className='catalog-multiple-tags-tag-beauty catalog-multiple-tags-tag' />
+                                       <span>{testDorm.tagType[0].charAt(0).toUpperCase() + testDorm.tagType[0].slice(1)}</span>
+                                    </div>
+                                    <div className="card-tag tag-type-4">
+                                       <span>Love</span>
+                                    </div>
+                                    <div className="card-tag tag-type-0">
+                                       <i className='catalog-multiple-tags-tag-comfort catalog-multiple-tags-tag' />
+                                       <span>{testDorm.tagType[1].charAt(0).toUpperCase() + testDorm.tagType[1].slice(1)}</span>
+                                    </div>
+                                    <div className="card-tag tag-type-3">
+                                       <span>Favorite</span>
+                                    </div>
+                                 </div>
                               </div>
                            </div>
                            <div className="card-footer w-full h-10 leading-10 px-1 text-center">
                               <div className="card-footer-inner">
-                                 <span>{testPet.name}</span>
+                                 <span>{testDorm.name}</span>
                               </div>
                               <div className="bottom-left-extra" />
                               <div className="top-right-extra" />
@@ -70,4 +94,4 @@ const ListPet = () => {
    )
 }
 
-export default ListPet
+export default ListDormitory

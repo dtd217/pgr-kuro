@@ -2,27 +2,14 @@ import { Select } from 'antd';
 
 import type { SelectProps } from 'antd';
 import { Link } from 'react-router-dom';
-import { petData } from '../Data/PetData';
+import { collectionData } from '../Data/CollectionData';
 
-const ListPet = () => {
-   const rankOptions: SelectProps['options'] = [
-      { label: 'S', value: 's' },
-      { label: 'A', value: 'a' },
-   ];
+const ListCollection = () => {
 
-   const testPet = petData[0]
+   const testCollect = collectionData[0]
 
    return (
       <div className="relative flex flex-col">
-         <div className="grid grid-cols-[repeat(auto-fill,minmax(160px,1fr))] gap-4 mb-5">
-            <Select
-               mode="tags"
-               placeholder="Auxiliary Rank"
-               maxTagCount={'responsive'}
-               options={rankOptions}
-               allowClear
-            />
-         </div>
          <div className='w-full grid grid-cols-[repeat(auto-fill,minmax(120px,1fr))] gap-4'>
             {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item, index) => (
                <Link to='#' className="relative">
@@ -43,12 +30,13 @@ const ListPet = () => {
                         <div className="card-inner !bg-[#e8e8e8] !bg-[length:120%_120%] !bg-[80%_80%]" style={{ backgroundImage: "url('/type-small-entry-star-normal.svg')" }}>
                            <div className="card-content">
                               <div className="card-content-inner relative border-8 border-white">
-                                 <img src={testPet.image} alt="image-pet" />
+                                 <img src={`/supply-${testCollect.star}.png`} alt="supply" className='absolute z-10 w-full bottom-0 right-0' />
+                                 <img src={testCollect.image} alt="image-wp" />
                               </div>
                            </div>
                            <div className="card-footer w-full h-10 leading-10 px-1 text-center">
                               <div className="card-footer-inner">
-                                 <span>{testPet.name}</span>
+                                 <span>{testCollect.name}</span>
                               </div>
                               <div className="bottom-left-extra" />
                               <div className="top-right-extra" />
@@ -70,4 +58,4 @@ const ListPet = () => {
    )
 }
 
-export default ListPet
+export default ListCollection

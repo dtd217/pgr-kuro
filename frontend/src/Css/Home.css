@@ -4,10 +4,17 @@
   background: url("../../public/arrow.png") no-repeat center/contain;
   width: 40px;
   height: 40px;
+  opacity: 0;
 }
 
 .swiper-button-prev {
   transform: rotate(180deg);
+}
+
+.swiper-initialized:hover .swiper-button-next,
+.swiper-initialized:hover .swiper-button-prev {
+  transition: all 0.3s ease-in-out;
+  opacity: 1;
 }
 
 .swiper-pagination {
@@ -22,7 +29,7 @@
   width: 828px;
 }
 
-.main-components>div {
+.main-components > div {
   margin-bottom: 24px;
 }
 
@@ -135,9 +142,7 @@
 }
 
 .shortcuts-card {
-  width: 140px;
-  height: 180px;
-  position: relative;
+  height: auto;
   position: relative;
   background-repeat: no-repeat;
   background-position-x: 0%;
@@ -167,7 +172,8 @@
 }
 
 .home-catalogue-component {
-  width: 780px;
+  display: flex;
+  flex-shrink: 1;
   border-radius: 8px;
   padding: 16px 0 12px;
   position: relative;
@@ -176,7 +182,6 @@
 .home-catalogue-component .catalog-item-scroll {
   margin-bottom: 8px;
   width: 100%;
-  overflow: hidden;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -188,17 +193,21 @@
   white-space: nowrap;
 }
 
+.ant-tabs {
+  width: 100%;
+}
+
 .ant-tabs-nav {
   margin-bottom: 20px !important;
 }
 
 .ant-tabs-tab-btn {
   color: #666;
-  font-size: 16px;
+  font-size: 1em;
 }
 
-.ant-tabs-tab:not(:nth-child(1)) {
-  margin-left: 24px !important;
+.ant-tabs-tabpane {
+  padding-left: 0;
 }
 
 .home-catalogue-component .glossary-catalog {
@@ -285,18 +294,20 @@
   height: 24px;
   background: rgba(37, 40, 52, 0.5);
   z-index: 3;
-  clip-path: polygon(0 0,
-      100% 0px,
-      100% 5px,
-      100% 100%,
-      5px 100%,
-      0px calc(100% - 5px));
+  clip-path: polygon(
+    0 0,
+    100% 0px,
+    100% 5px,
+    100% 100%,
+    5px 100%,
+    0px calc(100% - 5px)
+  );
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.corner-mark>img {
+.corner-mark > img {
   width: 100%;
   height: 100%;
   object-fit: contain;
@@ -374,8 +385,6 @@
   transform: translate(-50%);
   z-index: 10;
   transition: all 0.3s;
-  /* opacity: 0;
-  display: none; */
 }
 
 .card-inner {
@@ -389,7 +398,6 @@
 .main-card-inner {
   background-size: 100% 100%;
   width: 100%;
-  height: 224px;
   background: url("../../public/multiple-figure-bg.jpg") no-repeat;
 }
 
@@ -410,18 +418,62 @@
   overflow: hidden;
 }
 
-.content-bg {
-  top: 43%;
-  transform: translateY(-50%);
-  right: 0;
-  position: absolute;
-  opacity: .22;
-  width: 240px;
-  height: 240px;
-  z-index: 0;
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
+.card-inner .card-content-inner .card-tags {
+  width: fit-content;
+  display: grid;
+  gap: 10px;
+  margin-left: 12px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.card-inner .card-content-inner .card-tags > .card-tag {
+  display: flex;
+  padding: 2px 4px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2px;
+  border: 1px solid #d0d7e0;
+  background: #e1e5ee;
+  white-space: nowrap;
+  grid-column: span 1 / span 1;
+}
+
+.card-inner .card-content-inner .card-tags .tag-type-0 {
+  border: 1px solid #c37b25;
+  background: #f4e0be;
+  color: #c37b25;
+}
+
+.card-inner .card-content-inner .card-tags .tag-type-1 {
+  border: 1px solid #2e7bbe;
+  background: #c7d7f5;
+  color: #2e7bbe;
+}
+
+.card-inner .card-content-inner .card-tags .tag-type-2 {
+  border: 1px solid #b24747;
+  background: #e9cdce;
+  color: #b24747;
+}
+
+.catalog-multiple-tags-tag {
+  margin-right: 2px;
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  background: no-repeat center / contain;
+}
+
+.catalog-multiple-tags-tag-comfort {
+  background-image: url("../../public/tag-type-0.png");
+}
+
+.catalog-multiple-tags-tag-utility {
+  background-image: url("../../public/tag-type-1.png");
+}
+
+.catalog-multiple-tags-tag-beauty {
+  background-image: url("../../public/tag-type-2.png");
 }
 
 .card-inner .card-footer {
@@ -467,15 +519,17 @@
 }
 
 .card-level-S .mask {
-  width: 140px;
+  width: 100%;
   height: 29px;
   position: absolute;
   left: 0;
   bottom: 0;
   z-index: 2;
-  background: linear-gradient(0deg,
-      rgba(250, 88, 38, 0.2) 0%,
-      rgba(255, 166, 41, 0) 100%);
+  background: linear-gradient(
+    0deg,
+    rgba(250, 88, 38, 0.2) 0%,
+    rgba(255, 166, 41, 0) 100%
+  );
 }
 
 .card-level-S .card-footer .bottom-decorate {
@@ -496,10 +550,8 @@
 
 .card-inner .card-content-inner .card-main-image {
   position: relative;
-  width: 120px;
-  height: 120px;
   background: #e8e8e8;
-  background-image: url('../../public/type-small-entry-star-normal.svg');
+  background-image: url("../../public/type-small-entry-star-normal.svg");
   background-size: 104px 104px;
   border: 8px solid white;
   display: flex;
@@ -508,7 +560,7 @@
   overflow: hidden;
 }
 
-.card-inner .card-content-inner .card-main-image>img:nth-child(2) {
+.card-inner .card-content-inner .card-main-image > img:nth-child(2) {
   min-height: 100%;
   min-width: 100%;
   width: 100%;
@@ -518,6 +570,18 @@
 
 .card-content-inner img {
   transform: translateZ(0);
+}
+
+.card-inner .card-content-inner .card-image {
+  width: 60px;
+  height: 60px;
+  background: url(https://web-static.kurobbs.com/resource/wiki/prod/assets/multiple-tag-empty-a3899839.png);
+  background-size: 100% 100%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 
 .card-inner .card-content-inner .card-right {
@@ -534,7 +598,6 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  ;
   font-size: 18px;
   font-weight: 500;
   line-height: 26px;
