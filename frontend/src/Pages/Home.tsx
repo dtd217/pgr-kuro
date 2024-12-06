@@ -2,70 +2,12 @@ import '../Css/Home.css'
 import Layout from "../Layout/Layout"
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, EffectFade, Pagination, Navigation } from 'swiper/modules';
-import ListAircraft from "../Components/ListAircraft";
-import ListAwareness from '../Components/ListAwareness';
-import ListWeapon from '../Components/ListWeapon';
 import { Link } from "react-router-dom";
-import { Tabs } from 'antd';
 
-import type { TabsProps } from 'antd';
-import ListPet from '../Components/ListPet';
-import ListMonster from '../Components/ListMonster';
 import ListNavigation from '../Components/ListNavigation';
-import ListDormitory from '../Components/ListDormitory';
-import ListFurniture from '../Components/ListFurniture';
-import ListProp from '../Components/ListProp';
-import ListCollection from '../Components/ListCollection';
+import TabMenu from '../Components/TabMenu';
 
 const Home = () => {
-   const items: TabsProps['items'] = [
-      {
-         key: '1',
-         label: 'Aircraft Illustrations',
-         children: <ListAircraft />,
-      },
-      {
-         key: '2',
-         label: 'Awareness Manual',
-         children: <ListAwareness />,
-      },
-      {
-         key: '3',
-         label: 'Weapon',
-         children: <ListWeapon />,
-      },
-      {
-         key: '4',
-         label: 'Auxiliary Hangar',
-         children: <ListPet />,
-      },
-      {
-         key: '5',
-         label: 'Monster Manual',
-         children: <ListMonster />,
-      },
-      {
-         key: '6',
-         label: 'Dormitory Guide',
-         children: <ListDormitory />,
-      },
-      {
-         key: '7',
-         label: 'Dormitory Furniture',
-         children: <ListFurniture />,
-      },
-      {
-         key: '8',
-         label: 'Prop Guide',
-         children: <ListProp />,
-      },
-      {
-         key: '9',
-         label: 'Collections',
-         children: <ListCollection />,
-      },
-   ];
-
    return (
       <Layout>
          <div
@@ -99,7 +41,7 @@ const Home = () => {
                            <Link to='/'>
                               <img src="/home-banner-1.jpg" alt="banner" className="size-full" />
                               <div className="absolute w-full h-10 bg-black/50 bottom-0 left-0 z-10 flex justify-start items-center py-3 px-4 max-w-full overflow-hidden">
-                                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M4.79785 0H1.97003L0 1.97003V4.79785L4.79785 0ZM0 7.62628L7.62628 0H10.4556L0 10.4556V7.62628ZM0 13.284V16H0.112305L16 0.112305V0H13.284L0 13.284ZM16 2.94073L2.94073 16H5.7688L16 5.7688V2.94073ZM16 8.59723L8.59723 16H11.4263L16 11.4263V8.59723ZM16 14.2547L14.2547 16H16V14.2547Z" fill="#F45546"></path></svg>
+                                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" clipRule="evenodd" d="M4.79785 0H1.97003L0 1.97003V4.79785L4.79785 0ZM0 7.62628L7.62628 0H10.4556L0 10.4556V7.62628ZM0 13.284V16H0.112305L16 0.112305V0H13.284L0 13.284ZM16 2.94073L2.94073 16H5.7688L16 5.7688V2.94073ZM16 8.59723L8.59723 16H11.4263L16 11.4263V8.59723ZM16 14.2547L14.2547 16H16V14.2547Z" fill="#F45546"></path></svg>
                                  <span className="truncate ml-2 text-white font-semibold">Ishmael: Parhelion Wiki Updates</span>
                               </div>
                            </Link>
@@ -109,7 +51,7 @@ const Home = () => {
                               <img src="/home-banner-2.jpg" alt="banner" className="size-full" />
                               <div className="absolute w-full h-10 bg-black/50 bottom-0 left-0 z-10 flex justify-start items-center py-3 px-4 max-w-full 
                               -hidden">
-                                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M4.79785 0H1.97003L0 1.97003V4.79785L4.79785 0ZM0 7.62628L7.62628 0H10.4556L0 10.4556V7.62628ZM0 13.284V16H0.112305L16 0.112305V0H13.284L0 13.284ZM16 2.94073L2.94073 16H5.7688L16 5.7688V2.94073ZM16 8.59723L8.59723 16H11.4263L16 11.4263V8.59723ZM16 14.2547L14.2547 16H16V14.2547Z" fill="#F45546"></path></svg>
+                                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" clipRule="evenodd" d="M4.79785 0H1.97003L0 1.97003V4.79785L4.79785 0ZM0 7.62628L7.62628 0H10.4556L0 10.4556V7.62628ZM0 13.284V16H0.112305L16 0.112305V0H13.284L0 13.284ZM16 2.94073L2.94073 16H5.7688L16 5.7688V2.94073ZM16 8.59723L8.59723 16H11.4263L16 11.4263V8.59723ZM16 14.2547L14.2547 16H16V14.2547Z" fill="#F45546"></path></svg>
                                  <span className="truncate ml-2 text-white font-semibold">Rusty Night Chasing Light New Version Strategy Collection</span>
                               </div>
                            </Link>
@@ -118,7 +60,7 @@ const Home = () => {
                            <Link to='/'>
                               <img src="/home-banner-3.jpg" alt="banner" className="size-full" />
                               <div className="absolute w-full h-10 bg-black/50 bottom-0 left-0 z-10 flex justify-start items-center py-3 px-4 max-w-full overflow-hidden">
-                                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M4.79785 0H1.97003L0 1.97003V4.79785L4.79785 0ZM0 7.62628L7.62628 0H10.4556L0 10.4556V7.62628ZM0 13.284V16H0.112305L16 0.112305V0H13.284L0 13.284ZM16 2.94073L2.94073 16H5.7688L16 5.7688V2.94073ZM16 8.59723L8.59723 16H11.4263L16 11.4263V8.59723ZM16 14.2547L14.2547 16H16V14.2547Z" fill="#F45546"></path></svg>
+                                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" clipRule="evenodd" d="M4.79785 0H1.97003L0 1.97003V4.79785L4.79785 0ZM0 7.62628L7.62628 0H10.4556L0 10.4556V7.62628ZM0 13.284V16H0.112305L16 0.112305V0H13.284L0 13.284ZM16 2.94073L2.94073 16H5.7688L16 5.7688V2.94073ZM16 8.59723L8.59723 16H11.4263L16 11.4263V8.59723ZM16 14.2547L14.2547 16H16V14.2547Z" fill="#F45546"></path></svg>
                                  <span className="truncate ml-2 text-white font-semibold">Novice Commander Upgrade Guide</span>
                               </div>
                            </Link>
@@ -196,9 +138,15 @@ const Home = () => {
                            {/* Title */}
                            <div className="flex flex-col relative mb-2 mx-5">
                               <div className='flex flex-col py-4'>
-                                 <div className='flex gap-2'>
-                                    <img src="/illustrations.png" alt="illustrations" className='size-7' />
-                                    <span className="w-full text-xl font-bold truncate outline-none ">Illustrations</span>
+                                 <div className="flex justify-between items-center">
+                                    <div className='flex gap-2'>
+                                       <img src="/illustrations.png" alt="illustrations" className='size-7' />
+                                       <span className="w-full text-xl font-bold truncate outline-none ">Illustrations</span>
+                                    </div>
+                                    <Link to='/search/1' className='hover:text-gray-600 w-20 sm:w-fit truncate'>
+                                       <span className='mr-2 '>Check the detail</span>
+                                       <i className='fa fa-chevron-right fa-xs'></i>
+                                    </Link>
                                  </div>
                                  <img src="/title-underline.svg" alt="title-underline" className="mt-1 h-1 w-fit pointer-events-none" />
                               </div>
@@ -215,7 +163,7 @@ const Home = () => {
                            </div>
                            {/* Content */}
                            <div className="mx-5 mb-5">
-                              <Tabs defaultActiveKey="1" items={items} />
+                              <TabMenu />
                            </div>
                         </div>
                      </div>

@@ -1,0 +1,27 @@
+.ant-menu-submenu-title {
+  padding: 20px 16px 20px 20px !important;
+  font-size: 16px;
+  height: 60px !important;
+  border-radius: 0 !important;
+}
+
+.ant-menu-submenu-title:focus {
+  background: linear-gradient(90deg, #eaf0f9 0%, #eaf0f900 100%) !important;
+  color: #2980e5 !important;
+}
+
+.ant-menu-submenu-title:hover,
+.ant-menu-item:hover {
+  color: #333;
+  background: linear-gradient(90deg, #eaf0f9 0%, #eaf0f900 100%) !important;
+}
+
+.ant-menu-item {
+  border-radius: 0 !important;
+  padding: 20px 16px 20px 20px !important;
+  height: 60px !important;
+}
+
+.ant-menu-item .ant-menu-title-content {
+  margin-left: 16px !important;
+}
