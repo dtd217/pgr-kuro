@@ -59,6 +59,7 @@ const TabMenu = () => {
          children: <ListCollection />,
       },
    ];
+   
    return (
       <Tabs items={items} />
    )

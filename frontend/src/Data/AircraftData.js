@@ -1,7 +1,7 @@
 export const aircraftData = [
    {
       id: 1,
-      name: 'Lucia: Lotus',
+      name: 'Lucia Lotus',
       avatar: '/aircrafts/lucia-lotus/avatar.png',
       icon: '/aircrafts/lucia-lotus/icon.png',
       poster: '/aircrafts/lucia-lotus/poster.png',
@@ -14,28 +14,28 @@ export const aircraftData = [
          'Dual Blade Technique': 'Skill increases own attack damage'
       },
       stats: {
-         health: 1350,
-         damage: 270,
-         defense: 192,
-         crit: 121,
+         health: ['8905', '1350'],
+         attack: ['1759', '270'],
+         defense: ['1331', '192'],
+         crit: ['866', '121'],
       },
       file: {
-         'Launch day': 'June 15',
-         'Height': '165cm',
-         'Weight': '48kg',
-         'Circulating fluid type': 'A',
-         'Mental age': '17'
+         launchDay: 'June 15',
+         height: '165cm',
+         weight: '48kg',
+         fluidType: 'A',
+         mentalAge: '17'
       },
       weapon: {
-         type: 'Tachi',
+         type: 'Katana',
          signature: 'Lotus Berserker',
       },
       information: {
-         rank: 'B',
-         class: 'Attacker',
+         rank: 'b',
+         class: 'attacker',
          effect: 'none',
-         affiliation: 'Gray Raven',
-         gift: 'Frog Accessory',
+         affiliation: 'Gray Crow Squad',
+         gift: 'A Dai Frog',
       },
       skin: [
          {
@@ -178,11 +178,11 @@ export const aircraftData = [
    },
    {
       id: 2,
-      name: 'Lucia: Dawn',
+      name: 'Lucia Dawn',
       avatar: '/aircrafts/lucia-dawn/avatar.png',
       icon: '/aircrafts/lucia-dawn/icon.png',
       poster: '/aircrafts/lucia-dawn/poster.png',
-      elements: ['thunder', 'physics'],
+      elements: ['lightning', 'physics'],
       type: 'Omniframes',
       maxim: 'In the name of the Blade of God\'s Wrath, cut the night apart!',
       introduction: 'Lucia\'s signature frame. As graceful as it is powerful, its mere appearance on the battlefield inspires its allies, earning the “Dawn” sobriquet.',

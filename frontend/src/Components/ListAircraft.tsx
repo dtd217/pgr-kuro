@@ -7,7 +7,7 @@ import { aircraftData } from '../Data/AircraftData';
 const ListAircraft = () => {
    const elementOptions: SelectProps['options'] = [
       { label: 'Fire', value: 'fire' },
-      { label: 'Thunder', value: 'thunder' },
+      { label: 'Lightning', value: 'lightning' },
       { label: 'Dark', value: 'dark' },
       { label: 'Ice', value: 'ice' },
       { label: 'Physics', value: 'physics' },
@@ -73,11 +73,11 @@ const ListAircraft = () => {
          </div>
          <div className="w-full grid grid-cols-[repeat(auto-fill,minmax(120px,1fr))] gap-4">
             {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item, index) => (
-               <Link to='#' className="relative">
+               <Link to={`/character/${testChar.id}`} className="relative">
                   <div className="catalogue-card figure-card">
                      <div className="card-top-right-fixed">
                         <div className="corner-mark">
-                           <img src="/filter/element/null.png" alt="" />
+                           <img src="/filter/aircraft/element/null.png" alt="" />
                         </div>
                         <div className="card-skill-attr-box" />
                      </div>
