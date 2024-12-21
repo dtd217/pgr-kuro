@@ -10,8 +10,8 @@ export const aircraftData = [
       maxim: 'Let the burning red lotus end everything!',
       introduction: 'The leader of Gray Raven. Brave and selfless, she is ever at the frontline of the war against the Corrupted.',
       features: {
-         'Single': 'Powerful single-target attack capability',
-         'Dual Blade Technique': 'Skill increases own attack damage'
+         'Duel': 'Has strong single attack ability',
+         'Dual Blades': 'Attack DMG boosting skill'
       },
       stats: {
          health: ['8905', '1350'],
@@ -37,7 +37,7 @@ export const aircraftData = [
          affiliation: 'Gray Crow Squad',
          gift: 'A Dai Frog',
       },
-      skin: [
+      skins: [
          {
             id: 1,
             name: 'Generic',
@@ -91,47 +91,48 @@ export const aircraftData = [
          basicSkills: [
             {
                id: 1,
-               name: 'Red Lotus - Starting Style',
+               name: 'Initial Move',
                icon: '/aircrafts/lucia-lotus/b1.png',
-               description: 'Red signal ball - Eliminate the red signal ball\nStab forward, pulling the target and dealing physical damage.\n- Deals 274.56% / 549.01% / 823.53% physical damage based on the number of balls destroyed.'
+               description: 'Red Orb: Ping Red Orb\nThrusts forward and pulls the target, dealing Physical DMG.\n- Deals 274.56% / 549.01% / 823.53% Physical DMG based on the number of orbs pinged.'
             },
             {
                id: 2,
-               name: 'Red Lotus - Lightning Attack',
+               name: 'Flash Strike',
                icon: '/aircrafts/lucia-lotus/b2.png',
-               description: 'Yellow signal ball - Eliminate the yellow signal ball\nQuickly launches a single attack at the target, knocking it back and dealing physical damage.\n- Deals 158.82% / 317.65% / 476.47% physical damage based on the number of balls destroyed.'
+               description: 'Yellow Orb: Ping Yellow Orb\nQuickly strikes once and knocks the target airborne, dealing Physical DMG.\n- Deals 154.41% / 308.82% / 463.24% Physical DMG based on the number of orbs pinged.'
             },
             {
                id: 3,
-               name: 'Red Lotus - Wave Slash',
+               name: 'Wave Slash',
                icon: '/aircrafts/lucia-lotus/b3.png',
-               description: 'Blue signal ball - Eliminate the blue signal ball\nThe weapon bursts and deals physical damage, while adding fire damage to all attacks for a certain period of time.\n- Deals 102.94% / 205.88% / 308.82% physical damage based on the number of balls destroyed.\n- Adds 10.29% / 15.44% / 20.59% fire damage based on the number of balls destroyed, lasting 4/4/6 seconds.'
+               description: 'Blue Orb: Ping Blue Orb\nDeals Physical DMG and flares up weapon, making all attacks deal extra Fire DMG for a period of time.\n- Deals 102.94% / 205.88% / 308.82% Physical DMG based on the number of orbs pinged.\n- Deals extra 10.29% /15.44% / 20.59% Fire DMG for 4 / 4 / 6s based on the number of orbs pinged.'
             },
             {
                id: 4,
-               name: 'Red Lotus - Swift Blade Style',
+               name: 'Quick Blade',
                icon: '/aircrafts/lucia-lotus/b4.png',
-               description: 'Normal attack - Click normal attack\nUse Red Lotus Blade to attack the enemy continuously, causing physical damage.\n- Deals 571.76% physical damage in total.'
+               description: 'Basic Attack: Tap Basic Attack\nLaunches consecutive attacks with Lotus - Quick Blade, dealing Physical DMG.\n- Deals 555.88% Physical DMG in total.'
             },
          ],
          specialSkills: [
             {
                id: 1,
-               name: 'Red Lotus - Dual Swordsmanship',
+               name: 'Dual Blades',
                icon: '/aircrafts/lucia-lotus/s1.png',
-               description: 'Core passive - Eliminate any 3 + eliminate red signal balls\nAfter eliminating any 3 red signals, if you eliminate the red signal again within 4 seconds, Lucia Lotus will enter the burst state and use the double sword technique instead of the normal attack. Lotus - Dual Swordsmanship: Continuously attack the enemy, causing physical damage.\n- Causes a total of 1207.06% physical damage.'
+               corePassive: '/aircrafts/lucia-lotus/cp.png',
+               description: 'Core Passive: Any 3-Ping + Ping Red Orb\nLucia: Lotus enters Burst Form when a Red Orb is pinged within 4s after any 3-Ping, replacing Basic Attacks with Dual Blades. Lotus - Dual Blades: Attacks the enemy multiple times, dealing Physical DMG.\n- Deals 1111.76% Physical DMG in total.'
             },
             {
                id: 2,
-               name: 'Red Lotus Dance',
+               name: 'Lotus Flurry',
                icon: '/aircrafts/lucia-lotus/s2.png',
-               description: 'Special move - 100 special move energy + click to kill\nRelease Red Lotus Sword Dance to quickly slash and hit the enemy in front of you, causing physical damage.\n- Each slash causes 140% physical damage.\n- Heavy attack causes 1029.41% physical damage.'
+               description: 'Signature Move: 100 Energy + Tap Signature\nUnleashes Lotus Flurry to deal quick slashes to the enemies ahead and finish with a heavy blow, dealing Physical DMG.\n- Each slash deals 144.12% Physical DMG.\n- The heavy blow deals 1029.41% Physical DMG.'
             },
             {
                id: 3,
                name: 'Lotus Quick Slash',
                icon: '/aircrafts/lucia-lotus/s3.png',
-               description: 'QTE - Click QTE\nLucia Lotus appears and attacks the enemy with dual blades , causing physical damage.\n- Causes a total of 1142.65% physical damage.'
+               description: 'QTE: Tap QTE\nLucia: Lotus enters the battlefield and attacks the enemy with her Dual Blades, dealing Physical DMG.\n- Deals 1142.65% Physical DMG in total.'
             },
          ],
          commonEffects: [
@@ -139,39 +140,59 @@ export const aircraftData = [
                id: 1,
                name: 'Fearless Warrior',
                icon: '/aircrafts/lucia-lotus/c1.png',
-               description: 'Captain skill\nIncreases the attack power of all Attacker Omniframes in the team by 10%.'
+               description: 'Leader\nIncreases ATK of all Attacker Omniframes in the team by 10%.'
             },
             {
                id: 2,
                name: 'Attacker',
                icon: '/aircrafts/lucia-lotus/c2.png',
-               description: 'Professional skills\nAdditional damage bonus increased by 21.76%.'
+               description: 'Class\nExtra DMG Bonus increases by 20.59%.'
             },
             {
                id: 3,
-               name: 'Final Liberation',
+               name: 'Ultima Awaken',
                icon: '/aircrafts/lucia-lotus/c3.png',
-               description: 'When you first enter combat, you immediately receive three signal balls.'
+               description: 'Ultima\nGains 3 Signal Orbs when entering battle.'
             },
          ],
          evolutionEffects: [
             {
                id: 1,
-               name: 'Lightning Attack - Air Blade',
+               name: 'Spiritblade Slash',
                icon: '/aircrafts/lucia-lotus/e1.png',
-               description: 'SS Upgraded Passive\nWhen attacking a flying target, each attack will inflict an additional 20% physical damage.'
+               description: 'Rank SS\nWhen attacking airborne targets, deals extra 20% Physical DMG per attack.'
             },
             {
                id: 2,
-               name: 'The More Than Sword',
+               name: 'Relentless Blade',
                icon: '/aircrafts/lucia-lotus/e2.png',
-               description: 'SSS Upgraded Passive\nIn the double-blade burst state, the additional damage bonus increases by 15% .'
+               description: 'Rank SSS\nDuring Burst Form, Extra DMG Bonus increases by 15%.'
             },
             {
                id: 3,
-               name: 'Mirror Core',
+               name: 'Core of Clarity',
                icon: '/aircrafts/lucia-lotus/e3.png',
-               description: 'SSS+ Upgraded Passive\nNormal attack bonus damage increased by 15% .'
+               description: 'Ranks SSS+\nExtra DMG Bonus of Basic Attack increases by 15%.'
+            },
+         ],
+         leapSkills: [
+            {
+               id: 1,
+               name: '',
+               icon: '',
+               description: ''
+            },
+            {
+               id: 2,
+               name: '',
+               icon: '',
+               description: ''
+            },
+            {
+               id: 3,
+               name: '',
+               icon: '',
+               description: ''
             },
          ]
       },
@@ -296,6 +317,7 @@ export const aircraftData = [
                id: 1,
                name: 'Red Lotus - Dual Swordsmanship',
                icon: '/aircrafts/lucia-dawn/s1.png',
+               corePassive: '/aircrafts/lucia-dawn/cp.png',
                description: 'Core passive - Eliminate any 3 + eliminate red signal balls\nAfter eliminating any 3 red signals, if you eliminate the red signal again within 4 seconds, Lucia Lotus will enter the burst state and use the double sword technique instead of the normal attack. Lotus - Dual Swordsmanship: Continuously attack the enemy, causing physical damage.\n- Causes a total of 1207.06% physical damage.'
             },
             {
