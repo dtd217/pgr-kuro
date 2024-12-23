@@ -10,9 +10,9 @@ const ListAircraft = () => {
       { label: 'Lightning', value: 'lightning' },
       { label: 'Dark', value: 'dark' },
       { label: 'Ice', value: 'ice' },
-      { label: 'Physics', value: 'physics' },
+      { label: 'Physical', value: 'physical' },
       { label: 'Mix', value: 'mix' },
-      { label: 'Null', value: 'null' },
+      { label: 'Void', value: 'void' },
    ];
 
    const typeOptions: SelectProps['options'] = [
@@ -36,8 +36,6 @@ const ListAircraft = () => {
       { label: 'Annihilator', value: 'annihilator' },
       { label: 'Observer', value: 'observer' },
    ];
-
-   const testChar = aircraftData[0]
 
    return (
       <div className="relative flex flex-col">
@@ -72,12 +70,12 @@ const ListAircraft = () => {
             />
          </div>
          <div className="w-full grid grid-cols-[repeat(auto-fill,minmax(120px,1fr))] gap-4">
-            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item, index) => (
-               <Link to={`/character/${testChar.id}`} className="relative">
+            {aircraftData.map((character, index) => (
+               <Link key={index} to={`/character/${character.id}`} className="relative">
                   <div className="catalogue-card figure-card">
                      <div className="card-top-right-fixed">
                         <div className="corner-mark">
-                           <img src="/filter/aircraft/element/null.png" alt="" />
+                           <img src={`/filter/aircraft/element/${character.elements[0]}.png`} alt="" />
                         </div>
                         <div className="card-skill-attr-box" />
                      </div>
@@ -94,12 +92,12 @@ const ListAircraft = () => {
                         <div className="card-inner card-level-S">
                            <div className="card-content">
                               <div className="card-content-inner">
-                                 <img src={testChar.avatar} alt="avatar" />
+                                 <img src={character.avatar} alt="avatar" />
                               </div>
                            </div>
                            <div className="card-footer w-full h-10 leading-10 px-1 text-center">
                               <div className="card-footer-inner">
-                                 <span>{testChar.name}</span>
+                                 <span>{character.name}</span>
                               </div>
                               <div className="bottom-left-extra" />
                               <div className="top-right-extra" />

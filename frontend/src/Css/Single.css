@@ -1,9 +1,6 @@
 /* Aircraft */
 .single .ant-tabs-nav-list {
-  display: flex;
-  width: 100%;
   gap: 8px;
-  flex-wrap: wrap;
 }
 
 .ant-tabs .ant-tabs-tab.ant-tabs-tab-active {
@@ -23,7 +20,7 @@
 
 .single .ant-tabs-tab {
   padding: 12px !important;
-  width: calc(25% - 6px);
+  min-width: 120px;
   background-color: #d9dee5 !important;
   color: #6f6f6f;
   margin: 0 !important;
@@ -36,35 +33,30 @@
 }
 
 .single-mobile .ant-tabs-nav-list {
-  display: flex;
-  width: 100%;
+  width: 264px;
+  min-width: 100%;
   gap: 8px;
-  flex-wrap: wrap;
+  overflow: auto;
 }
 
 .single-mobile .ant-tabs-tab {
-  padding: 12px !important;
-  width: 20%;
-  min-width: 128px;
+  padding: 8px !important;
+  min-width: 96px;
   background-color: #d9dee5 !important;
   color: #6f6f6f;
   margin: 0 !important;
   outline: none;
   justify-content: center;
   align-items: center;
-  font-size: 16px !important;
+  font-size: 14px !important;
   font-weight: 500;
   letter-spacing: 0.025em;
 }
 
 .ant-collapse {
   border-radius: 0 !important;
-  border-color: black;
+  border: 1px solid black;
 }
-
-/* .ant-collapse-item {
-  margin-bottom: 24px;
-} */
 
 .ant-collapse-header {
   background: url("/public/wikipnsbg.png");
@@ -73,7 +65,6 @@
   background-size: 100% 100%;
   border-radius: 0 !important;
   opacity: 1;
-  flex-direction: row-reverse;
   align-items: center !important;
   font-weight: 600;
   padding: 12px 16px !important;
@@ -99,6 +90,10 @@
   gap: 8px;
 }
 
+.ant-tabs-nav::before {
+  border-bottom: none !important;
+}
+
 .introduce-collapse .ant-tabs-tab {
   padding: 8px !important;
   background-color: #d9dee5 !important;
@@ -110,4 +105,13 @@
   font-size: 14px !important;
   font-weight: 500;
   letter-spacing: 0.025em;
+}
+
+.scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }
