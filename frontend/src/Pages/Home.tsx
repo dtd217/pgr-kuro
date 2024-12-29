@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, EffectFade, Pagination, Navigation } from 'swiper/modules';
 import { Link } from "react-router-dom";
 
-import ListNavigation from '../Components/ListNavigation';
+import ListNavigation from '../Components/list/ListNavigation';
 import TabMenu from '../Components/TabMenu';
 
 const Home = () => {

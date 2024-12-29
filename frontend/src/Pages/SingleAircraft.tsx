@@ -1,52 +1,37 @@
 import { useParams } from "react-router-dom"
 import Layout from "../Layout/Layout"
 import { aircraftData } from "../Data/AircraftData"
+import { petData } from "../Data/PetData"
 import { Tabs, Collapse } from 'antd';
 import '../Css/Single.css'
 
 import type { TabsProps } from 'antd';
-import { useEffect } from "react";
-
-type LeapSkills = {
-   id: number,
-   name: string,
-   icon: string,
-   description: string
-}
 
 const SingleAircraft = () => {
    const { id } = useParams()
 
    const selectedCharacter = aircraftData?.find((character) => character.id === Number(id))
-   const selectedCharacterLeapSkills: LeapSkills | any = selectedCharacter?.skills.leapSkills
+   const selectedPet = petData?.find((pet) => pet.id === selectedCharacter?.pet?.id)
 
    let modifiedText: any = (text: string) => text?.toLowerCase().replace(/ /g, '-');
 
-   const renderDescription = (description: string, color: string) => {
-      return description.split('\n').map((line, lineIndex) => (
-         <span key={lineIndex} className="first:text-[#24baff] first:font-medium">
-            {line.split(/(\d+\.\d+%?)|(\d+?s?)/g).map((part, partIndex) => {
-               if (/^\d+\.\d+%?$/.test(part)) {
-                  return (
-                     <span key={partIndex} style={{ color: color }}>
-                        {part}
-                     </span>
-                  );
-               }
+   const formattedText = (text:string) => text.replace(/-/g, ' ').replace(/\b\w/g, char => char.toUpperCase())
 
-               if (/(\d+)|(\d+)?%/g.test(part)) {
-                  return (
-                     <span key={partIndex} style={{ color: color }}>
-                        {part}
-                     </span>
-                  );
-               }
-               return part;
-            })}
-            <br />
-         </span>
-      ));
-   };
+   const renderDescription = (description: string) => {
+      const parts = description.split(/(\d+|[%])/);
+
+      return (
+         <p className="first-line:text-[#24baff] first-line:font-medium">
+            {parts.map((part, index) =>
+               /\d+|[%]/.test(part) ? (
+                  <span key={index} className="text-[#ff0000]">{part}</span>
+               ) : (
+                  <span key={index}>{part}</span>
+               )
+            )}
+         </p>
+      );
+   }
 
    const items: TabsProps['items'] = [
       {
@@ -78,8 +63,8 @@ const SingleAircraft = () => {
                   <div className="py-2 px-3 bg-[#ffffff80] text-lg flex gap-4">
                      {selectedCharacter?.elements.map((element, index) => (
                         <div className="flex items-center w-1/2" key={index}>
-                           <img src={`/filter/aircraft/element/${element}.png`} alt="element" className="size-8 sm:size-16 invert inline-block" />
-                           <span className="capitalize font-semibold text-base sm:text-lg">{element}</span>
+                           <img src={`/filter/aircraft/element/${element.type}.png`} alt="element" className="size-8 sm:size-12 invert inline-block" />
+                           <span className="capitalize font-semibold text-base">{element.type} ({element.percent}%)</span>
                         </div>
                      ))}
                   </div>
@@ -97,7 +82,7 @@ const SingleAircraft = () => {
                      <img src="/health.png" alt="health" className="size-[18px]" />
                      <span>Life/HEALTH</span>
                   </div>
-                  <div className="flex gap-2 items-center truncate sm:text-lg text-[#333]">
+                  <div className="flex gap-2 items-center truncate sm:text-lg font-medium text-[#333]">
                      <span>{selectedCharacter?.stats.health}</span>
                   </div>
                </div>
@@ -106,7 +91,7 @@ const SingleAircraft = () => {
                      <img src="/attack.png" alt="attack" className="size-[18px]" />
                      <span>Attack/ATK</span>
                   </div>
-                  <div className="flex gap-2 items-center truncate sm:text-lg text-[#333]">
+                  <div className="flex gap-2 items-center truncate sm:text-lg font-medium text-[#333]">
                      <span>{selectedCharacter?.stats.attack}</span>
                   </div>
                </div>
@@ -115,7 +100,7 @@ const SingleAircraft = () => {
                      <img src="/defense.png" alt="defense" className="size-[18px]" />
                      <span>Defense/DEF</span>
                   </div>
-                  <div className="flex gap-2 items-center truncate sm:text-lg text-[#333]">
+                  <div className="flex gap-2 items-center truncate sm:text-lg font-medium text-[#333]">
                      <span>{selectedCharacter?.stats.defense}</span>
                   </div>
                </div>
@@ -124,7 +109,7 @@ const SingleAircraft = () => {
                      <img src="/crit.png" alt="crit" className="size-[18px]" />
                      <span>Critial Hit</span>
                   </div>
-                  <div className="flex gap-2 items-center truncate sm:text-lg text-[#333]">
+                  <div className="flex gap-2 items-center truncate sm:text-lg font-medium text-[#333]">
                      <span>{selectedCharacter?.stats.crit}</span>
                   </div>
                </div>
@@ -184,7 +169,7 @@ const SingleAircraft = () => {
                      <div className="size-[83px] bg-[#ffffff80] flex items-center justify-center">
                         <img src={`/filter/weapon/${modifiedText(selectedCharacter?.weapon.type)}.png`} alt="weapon-type" className="max-w-full max-h-full object-cover" />
                      </div>
-                     <span className="w-[83px] text-center whitespace-wrap">{selectedCharacter?.weapon.type}</span>
+                     <span className="w-[83px] text-center whitespace-wrap capitalize">{selectedCharacter?.weapon.type}</span>
                   </div>
                   <div className="flex flex-col gap-1">
                      <span className="text-[#8c95a3] text-center">Signature</span>
@@ -220,39 +205,39 @@ const SingleAircraft = () => {
             <table className="w-full">
                <tbody className="*:*:border *:*:border-[#d9d9d9] *:*:p-3">
                   <tr>
-                     <td className="text-center align-middle w-24 *:py-1.5 *:w-[70px] *:mx-auto">
+                     <td className="text-center align-middle break-words w-24 *:py-1.5 *:w-[70px] *:mx-auto">
                         <img src={selectedCharacter?.skills.basicSkills[0].icon} alt="b1" />
                         <p className="text-[#ed5563] font-medium">{selectedCharacter?.skills.basicSkills[0].name}</p>
                      </td>
-                     <td className="text-left">
-                        {renderDescription(selectedCharacter?.skills.basicSkills[0].description ?? '', 'red')}
+                     <td className="text-left whitespace-pre-line">
+                        {selectedCharacter?.skills.basicSkills[0].description.map((text: string) => renderDescription(text))}
                      </td>
                   </tr>
                   <tr>
-                     <td className="text-center align-middle w-24 *:py-1.5 *:w-[70px] *:mx-auto">
+                     <td className="text-center align-middle break-words w-24 *:py-1.5 *:w-[70px] *:mx-auto">
                         <img src={selectedCharacter?.skills.basicSkills[1].icon} alt="b2" />
                         <p className="text-[#e79451] font-medium">{selectedCharacter?.skills.basicSkills[1].name}</p>
                      </td>
-                     <td className="text-left">
-                        {renderDescription(selectedCharacter?.skills.basicSkills[1].description ?? '', 'red')}
+                     <td className="text-left whitespace-pre-line">
+                        {selectedCharacter?.skills.basicSkills[1].description.map((text: string) => renderDescription(text))}
                      </td>
                   </tr>
                   <tr>
-                     <td className="text-center align-middle w-24 *:py-1.5 *:w-[70px] *:mx-auto">
+                     <td className="text-center align-middle break-words w-24 *:py-1.5 *:w-[70px] *:mx-auto">
                         <img src={selectedCharacter?.skills.basicSkills[2].icon} alt="b3" />
                         <p className="text-[#548bf0] font-medium">{selectedCharacter?.skills.basicSkills[2].name}</p>
                      </td>
-                     <td className="text-left">
-                        {renderDescription(selectedCharacter?.skills.basicSkills[2].description ?? '', 'red')}
+                     <td className="text-left whitespace-pre-line">
+                        {selectedCharacter?.skills.basicSkills[2].description.map((text: string) => renderDescription(text))}
                      </td>
                   </tr>
                   <tr>
-                     <td className="text-center align-middle bg-[#4d5864] w-24 *:py-1.5 *:w-[70px] *:mx-auto">
+                     <td className="text-center align-middle break-words bg-[#4d5864] w-24 *:py-1.5 *:w-[70px] *:mx-auto">
                         <img src={selectedCharacter?.skills.basicSkills[3].icon} alt="b4" />
                         <p className="text-white font-medium">{selectedCharacter?.skills.basicSkills[3].name}</p>
                      </td>
-                     <td className="text-left">
-                        {renderDescription(selectedCharacter?.skills.basicSkills[3].description ?? '', 'red')}
+                     <td className="text-left whitespace-pre-line">
+                        {selectedCharacter?.skills.basicSkills[3].description.map((text: string) => renderDescription(text))}
                      </td>
                   </tr>
                </tbody>
@@ -265,7 +250,7 @@ const SingleAircraft = () => {
             <table className="w-full">
                <tbody className="*:*:border *:*:border-[#d9d9d9] *:*:p-3">
                   <tr>
-                     <td rowSpan={2} className="text-center align-middle bg-[#4d5864] w-24 *:py-1.5 *:w-[70px] *:mx-auto">
+                     <td rowSpan={2} className="text-center align-middle break-words bg-[#4d5864] w-24 *:py-1.5 *:w-[70px] *:mx-auto">
                         <img src={selectedCharacter?.skills.specialSkills[0].icon} alt="s1" />
                         <p className="text-white font-medium">{selectedCharacter?.skills.specialSkills[0].name}</p>
                      </td>
@@ -274,26 +259,26 @@ const SingleAircraft = () => {
                      </td>
                   </tr>
                   <tr>
-                     <td className="text-left">
-                        {renderDescription(selectedCharacter?.skills.specialSkills[0].description ?? '', 'red')}
+                     <td className="text-left whitespace-pre-line">
+                        {selectedCharacter?.skills.specialSkills[0].description.map((text: string) => renderDescription(text))}
                      </td>
                   </tr>
                   <tr>
-                     <td className="text-center align-middle bg-[#4d5864] w-24 *:py-1.5 *:w-[70px] *:mx-auto">
+                     <td className="text-center align-middle break-words bg-[#4d5864] w-24 *:py-1.5 *:w-[70px] *:mx-auto">
                         <img src={selectedCharacter?.skills.specialSkills[1].icon} alt="s2" />
                         <p className="text-white font-medium">{selectedCharacter?.skills.specialSkills[1].name}</p>
                      </td>
-                     <td className="text-left">
-                        {renderDescription(selectedCharacter?.skills.specialSkills[1].description ?? '', 'red')}
+                     <td className="text-left whitespace-pre-line">
+                        {selectedCharacter?.skills.specialSkills[1].description.map((text: string) => renderDescription(text))}
                      </td>
                   </tr>
                   <tr>
-                     <td className="text-center align-middle bg-[#4d5864] w-24 *:py-1.5 *:w-[70px] *:mx-auto">
+                     <td className="text-center align-middle break-words bg-[#4d5864] w-24 *:py-1.5 *:w-[70px] *:mx-auto">
                         <img src={selectedCharacter?.skills.specialSkills[2].icon} alt="s3" />
                         <p className="text-white font-medium">{selectedCharacter?.skills.specialSkills[2].name}</p>
                      </td>
-                     <td className="text-left">
-                        {renderDescription(selectedCharacter?.skills.specialSkills[2].description ?? '', 'red')}
+                     <td className="text-left whitespace-pre-line">
+                        {selectedCharacter?.skills.specialSkills[2].description.map((text: string) => renderDescription(text))}
                      </td>
                   </tr>
                </tbody>
@@ -306,30 +291,30 @@ const SingleAircraft = () => {
             <table className="w-full">
                <tbody className="*:*:border *:*:border-[#d9d9d9] *:*:p-3">
                   <tr>
-                     <td className="text-center align-middle bg-[#4d5864] w-24 *:py-1.5 *:w-[70px] *:mx-auto">
+                     <td className="text-center align-middle break-words bg-[#4d5864] w-24 *:py-1.5 *:w-[70px] *:mx-auto">
                         <img src={selectedCharacter?.skills.commonEffects[0].icon} alt="c1" />
                         <p className="text-white font-medium">{selectedCharacter?.skills.commonEffects[0].name}</p>
                      </td>
-                     <td className="text-left">
-                        {renderDescription(selectedCharacter?.skills.commonEffects[0].description ?? '', 'red')}
+                     <td className="text-left whitespace-pre-line">
+                        {selectedCharacter?.skills.commonEffects[0].description.map((text: string) => renderDescription(text))}
                      </td>
                   </tr>
                   <tr>
-                     <td className="text-center align-middle bg-[#4d5864] w-24 *:py-1.5 *:w-[70px] *:mx-auto">
+                     <td className="text-center align-middle break-words bg-[#4d5864] w-24 *:py-1.5 *:w-[70px] *:mx-auto">
                         <img src={selectedCharacter?.skills.commonEffects[1].icon} alt="c2" />
                         <p className="text-white font-medium">{selectedCharacter?.skills.commonEffects[1].name}</p>
                      </td>
-                     <td className="text-left">
-                        {renderDescription(selectedCharacter?.skills.commonEffects[1].description ?? '', 'red')}
+                     <td className="text-left whitespace-pre-line">
+                        {selectedCharacter?.skills.commonEffects[1].description.map((text: string) => renderDescription(text))}
                      </td>
                   </tr>
                   <tr>
-                     <td className="text-center align-middle bg-[#4d5864] w-24 *:py-1.5 *:w-[70px] *:mx-auto">
+                     <td className="text-center align-middle break-words bg-[#4d5864] w-24 *:py-1.5 *:w-[70px] *:mx-auto">
                         <img src={selectedCharacter?.skills.commonEffects[2].icon} alt="c3" />
                         <p className="text-white font-medium">{selectedCharacter?.skills.commonEffects[2].name}</p>
                      </td>
-                     <td className="text-left">
-                        {renderDescription(selectedCharacter?.skills.commonEffects[2].description ?? '', 'red')}
+                     <td className="text-left whitespace-pre-line">
+                        {selectedCharacter?.skills.commonEffects[2].description.map((text: string) => renderDescription(text))}
                      </td>
                   </tr>
                </tbody>
@@ -342,30 +327,30 @@ const SingleAircraft = () => {
             <table className="w-full">
                <tbody className="*:*:border *:*:border-[#d9d9d9] *:*:p-3">
                   <tr>
-                     <td className="text-center align-middle bg-[#4d5864] w-24 *:py-1.5 *:w-[70px] *:mx-auto">
+                     <td className="text-center align-middle break-words bg-[#4d5864] w-24 *:py-1.5 *:w-[70px] *:mx-auto">
                         <img src={selectedCharacter?.skills.evolutionEffects[0].icon} alt="e1" />
                         <p className="text-white font-medium">{selectedCharacter?.skills.evolutionEffects[0].name}</p>
                      </td>
-                     <td className="text-left">
-                        {renderDescription(selectedCharacter?.skills.evolutionEffects[0].description ?? '', 'red')}
+                     <td className="text-left whitespace-pre-line">
+                        {selectedCharacter?.skills.evolutionEffects[0].description.map((text: string) => renderDescription(text))}
                      </td>
                   </tr>
                   <tr>
-                     <td className="text-center align-middle bg-[#4d5864] w-24 *:py-1.5 *:w-[70px] *:mx-auto">
+                     <td className="text-center align-middle break-words bg-[#4d5864] w-24 *:py-1.5 *:w-[70px] *:mx-auto">
                         <img src={selectedCharacter?.skills.evolutionEffects[1].icon} alt="e2" />
                         <p className="text-white font-medium">{selectedCharacter?.skills.evolutionEffects[1].name}</p>
                      </td>
-                     <td className="text-left">
-                        {renderDescription(selectedCharacter?.skills.evolutionEffects[1].description ?? '', 'red')}
+                     <td className="text-left whitespace-pre-line">
+                        {selectedCharacter?.skills.evolutionEffects[1].description.map((text: string) => renderDescription(text))}
                      </td>
                   </tr>
                   <tr>
-                     <td className="text-center align-middle bg-[#4d5864] w-24 *:py-1.5 *:w-[70px] *:mx-auto">
+                     <td className="text-center align-middle break-words bg-[#4d5864] w-24 *:py-1.5 *:w-[70px] *:mx-auto">
                         <img src={selectedCharacter?.skills.evolutionEffects[2].icon} alt="e3" />
                         <p className="text-white font-medium">{selectedCharacter?.skills.evolutionEffects[2].name}</p>
                      </td>
-                     <td className="text-left">
-                        {renderDescription(selectedCharacter?.skills.evolutionEffects[2].description ?? '', 'red')}
+                     <td className="text-left whitespace-pre-line">
+                        {selectedCharacter?.skills.evolutionEffects[2].description.map((text: string) => renderDescription(text))}
                      </td>
                   </tr>
                </tbody>
@@ -385,7 +370,7 @@ const SingleAircraft = () => {
                <table className="w-full">
                   <tbody className="*:*:border *:*:border-[#d9d9d9] *:*:p-3">
                      <tr>
-                        <td rowSpan={2} className="text-center align-middle">
+                        <td rowSpan={2} className="text-center align-middle break-words">
                            <img src={selectedCharacter?.skins[skin.id - 1].icon} alt={selectedCharacter?.skins[skin.id - 1].name} className="min-w-[100px] min-h-[100px] size-[100px]" />
                            <img src={`/supply-${selectedCharacter?.skins[skin.id - 1].star}.png`} alt="star" className="min-w-[100px] w-[100px]" />
                         </td>
@@ -418,30 +403,30 @@ const SingleAircraft = () => {
             <table className="w-full">
                <tbody className="*:*:border *:*:border-[#d9d9d9] *:*:p-3">
                   <tr>
-                     <td className="text-center align-middle bg-[#4d5864] w-24 *:py-1.5 *:w-[70px] *:mx-auto">
-                        <img src={selectedCharacterLeapSkills?.icon ?? ''} alt="l1" />
-                        <p className="text-white font-medium">{selectedCharacterLeapSkills?.name}</p>
+                     <td className="text-center align-middle break-words bg-[#4d5864] w-24 *:py-1.5 *:w-[70px] *:mx-auto">
+                        <img src={selectedCharacter?.skills.leapSkills[0].icon} alt="e1" />
+                        <p className="text-white font-medium">{selectedCharacter?.skills.leapSkills[0].name}</p>
                      </td>
-                     <td className="text-left">
-                        {renderDescription(selectedCharacterLeapSkills?.description ?? '', 'red')}
-                     </td>
-                  </tr>
-                  <tr>
-                     <td className="text-center align-middle bg-[#4d5864] w-24 *:py-1.5 *:w-[70px] *:mx-auto">
-                        <img src={selectedCharacterLeapSkills?.icon} alt="l2" />
-                        <p className="text-white font-medium">{selectedCharacterLeapSkills?.name}</p>
-                     </td>
-                     <td className="text-left">
-                        {renderDescription(selectedCharacterLeapSkills?.description ?? '', 'red')}
+                     <td className="text-left whitespace-pre-line">
+                        {selectedCharacter?.skills.leapSkills[0].description.map((text: string) => renderDescription(text))}
                      </td>
                   </tr>
                   <tr>
-                     <td className="text-center align-middle bg-[#4d5864] w-24 *:py-1.5 *:w-[70px] *:mx-auto">
-                        <img src={selectedCharacterLeapSkills?.icon} alt="l3" />
-                        <p className="text-white font-medium">{selectedCharacterLeapSkills?.name}</p>
+                     <td className="text-center align-middle break-words bg-[#4d5864] w-24 *:py-1.5 *:w-[70px] *:mx-auto">
+                        <img src={selectedCharacter?.skills.leapSkills[1].icon} alt="e2" />
+                        <p className="text-white font-medium">{selectedCharacter?.skills.leapSkills[1].name}</p>
                      </td>
-                     <td className="text-left">
-                        {renderDescription(selectedCharacterLeapSkills?.description ?? '', 'red')}
+                     <td className="text-left whitespace-pre-line">
+                        {selectedCharacter?.skills.leapSkills[1].description.map((text: string) => renderDescription(text))}
+                     </td>
+                  </tr>
+                  <tr>
+                     <td className="text-center align-middle break-words bg-[#4d5864] w-24 *:py-1.5 *:w-[70px] *:mx-auto">
+                        <img src={selectedCharacter?.skills.leapSkills[2].icon} alt="e3" />
+                        <p className="text-white font-medium">{selectedCharacter?.skills.leapSkills[2].name}</p>
+                     </td>
+                     <td className="text-left whitespace-pre-line">
+                        {selectedCharacter?.skills.leapSkills[2].description.map((text: string) => renderDescription(text))}
                      </td>
                   </tr>
                </tbody>
@@ -455,7 +440,7 @@ const SingleAircraft = () => {
          key: '1',
          label: 'Good feeling plot',
          children:
-            <div className="w-full text-[#333] text-center align-middle hover:text-[#1db5b8] cursor-pointer">
+            <div className="w-full text-[#333] text-center align-middle break-words hover:text-[#1db5b8] cursor-pointer">
                <span className="text-lg sm:text-2xl md:text-xl lg:text-2xl font-bold">Click to view the favorability plot&gt;&gt;</span>
             </div>
       },
@@ -488,7 +473,7 @@ const SingleAircraft = () => {
                <tbody className="*:*:border *:*:border-[#d9d9d9] *:*:p-3">
                   {selectedCharacter?.archives?.secrets.map((secret) => (
                      <tr key={secret.id}>
-                        <th className="bg-[#4d5864] text-white text-sm font-medium text-center align-middle w-1/4 min-w-[90px] *:py-1.5">
+                        <th className="bg-[#4d5864] text-white text-sm font-medium text-center align-middle break-words w-1/4 min-w-[90px] *:py-1.5">
                            <p>Secret of {selectedCharacter?.name} {secret.id}</p>
                            <p className="text-xs">Unlocked at Trust <span className="text-[#ea9034]">Level {secret.unlockedAt}</span></p>
                         </th>
@@ -510,6 +495,10 @@ const SingleAircraft = () => {
       };
    }) || []
 
+   const mainElement = selectedCharacter?.elements.reduce((max: any, current: any) => {
+      return current.percent > max.percent ? current : max;
+   }, selectedCharacter?.elements[0])
+
    const equipmentItems: TabsProps['items'] = [
       {
          key: '1',
@@ -525,7 +514,7 @@ const SingleAircraft = () => {
                      <col className="min-w-44" />
                      <col className="min-w-44" />
                   </colgroup>
-                  {selectedCharacter?.equipment.awareness.map((set, index) => (
+                  {selectedCharacter?.awareness?.map((set, index) => (
                      <tbody key={index} className="*:*:border *:*:border-[#d9d9d9] *:*:p-3">
                         <tr className="*:align-middle *:text-center *:*:mx-auto h-36">
                            <td rowSpan={3}>
@@ -538,7 +527,7 @@ const SingleAircraft = () => {
                               <img src={`/awareness/${set.set2.name}/14.png`} alt={set.set2.name} className="size-[100px]" />
                            </td>
                            <td rowSpan={set.resonance.length === 1 ? 2 : 1} className="bg-[#34495e]">
-                              {set.resonance.length === 1 && <span className="py-1.5 text-white text-2xl">{set.resonance[0]}</span>}
+                              {set.resonance.length === 1 && <span className="py-1.5 text-white text-xl">{set.resonance[0]}</span>}
                               {set.resonance.length === 2 &&
                                  <div className="w-full flex justify-between items-center text-white">
                                     <img src={`/awareness/${set.resonance[0]}/14.png`} alt="" />
@@ -555,8 +544,8 @@ const SingleAircraft = () => {
                            </td>
                         </tr>
                         <tr className="*:align-middle *:text-center *:*:mx-auto h-11 text-[#7e8c8d]">
-                           <td className="capitalize">{set.set4.name} &#10799;4</td>
-                           <td className="capitalize">{set.set2.name} &#10799;2</td>
+                           <td className="capitalize">{formattedText(set.set4.name)} &#10799;4</td>
+                           <td className="capitalize">{formattedText(set.set2.name)} &#10799;2</td>
                            {set.resonance.length === 2 && <td className="capitalize">{set.resonance.join(' / ')}</td>}
                            <td className="capitalize">{set.set4.resonance} &#10799;6</td>
                            <td className="capitalize">{set.set2.resonance} &#10799;6</td>
@@ -646,21 +635,25 @@ const SingleAircraft = () => {
                   <tbody className="*:*:border *:*:border-[#d9d9d9] *:*:p-3">
                      <tr className="*:align-middle *:text-center *:*:mx-auto h-[120px]">
                         <td rowSpan={3}>
-                           <img src={selectedCharacter?.pet.image} alt="pet" className="max-w-full max-h-full object-cover size-[150px] mb-1.5" />
-                           <span className="text-[#7e8c8d] text-lg capitalize">{selectedCharacter?.pet.name}</span>
+                           <img src={selectedPet?.image} alt="pet" className="max-w-full max-h-full object-cover size-[150px] mb-1.5" />
+                           <span className="text-[#7e8c8d] text-lg capitalize">{selectedPet?.name}</span>
                         </td>
                         <td rowSpan={2} className="bg-[#34495e]">
                            <span className="py-1.5 text-white text-xl">Skills</span>
                         </td>
-                        {selectedCharacter?.pet.resonance.map((reso, index) => (
+                        <td className="bg-[#34495e]">
+                           <img src={selectedCharacter?.pet.resonance.image} alt={selectedCharacter?.pet.resonance.name} className="size-[60px]" />
+                        </td>
+                        {selectedPet?.passiveSkills.map((skill, index) => (
                            <td key={index} className="bg-[#34495e]">
-                              <img src={reso.image} alt={reso.name} className="size-[60px]" />
+                              <img src={skill.image} alt={skill.name} className="size-[60px]" />
                            </td>
                         ))}
                      </tr>
                      <tr className="*:align-middle *:text-center *:*:mx-auto h-11 text-[#7e8c8d] text-sm">
-                        {selectedCharacter?.pet.resonance.map((reso, index) => (
-                           <td key={index} className="capitalize">{reso.name}</td>
+                        <td className="capitalize">{selectedCharacter?.pet.resonance.name}</td>
+                        {selectedPet?.passiveSkills.map((skill, index) => (
+                           <td key={index} className="capitalize">{skill.name}</td>
                         ))}
                      </tr>
                      <tr className="*:align-middle *:text-center *:*:mx-auto">
@@ -684,9 +677,9 @@ const SingleAircraft = () => {
       },
    ]
 
-   useEffect(() => {
-      window.scrollTo(0, 0)
-   }, [])
+   // useEffect(() => {
+   //    window.scrollTo(0, 0)
+   // }, [])
 
    return (
       <Layout>
@@ -723,7 +716,7 @@ const SingleAircraft = () => {
                            <div className="flex w-full justify-start">
                               <div className="relative flex items-start justify-center flex-col mr-3 sm:mr-8 w-16">
                                  <div className="size-14 sm:size-20">
-                                    <img src='/filter/aircraft/class/attacker.png' alt="class" className="max-w-full max-h-full object-cover" />
+                                    <img src={`filter/aircraft/class/${selectedCharacter?.information.class}.png`} alt="class" className="max-w-full max-h-full object-cover" />
                                  </div>
                                  <div className="w-14 sm:w-20 mt-1.5 py-0.5 bg-[#333] text-white text-[10px] sm:text-sm font-semibold text-center">
                                     <span>{selectedCharacter?.information.class}</span>
@@ -760,10 +753,10 @@ const SingleAircraft = () => {
                         <div className="flex w-full justify-start">
                            <div className="relative flex items-start justify-center flex-col mr-5 w-16">
                               <div className="size-16">
-                                 <img src='/filter/aircraft/class/attacker.png' alt="class" className="max-w-full max-h-full object-cover" />
+                                 <img src={`/filter/aircraft/class/${selectedCharacter?.information.class}.png`} alt="class" className="max-w-full max-h-full object-cover" />
                               </div>
                               <div className="w-16 mt-1.5 py-0.5 bg-[#333] text-white text-sm font-semibold text-center">
-                                 <span>Attacker</span>
+                                 <span className="capitalize">{selectedCharacter?.information.class}</span>
                               </div>
                               <img src="/divider.png" alt="divider" className="absolute h-full w-auto -right-5" />
                            </div>

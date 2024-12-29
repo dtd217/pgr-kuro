@@ -1,13 +1,13 @@
 import { Tabs } from 'antd';
-import ListAircraft from './ListAircraft';
-import ListAwareness from './ListAwareness';
-import ListWeapon from './ListWeapon';
-import ListPet from './ListPet';
-import ListMonster from './ListMonster';
-import ListDormitory from './ListDormitory';
-import ListFurniture from './ListFurniture';
-import ListProp from './ListProp';
-import ListCollection from './ListCollection';
+import ListAircraft from './list/ListAircraft';
+import ListAwareness from './list/ListAwareness';
+import ListWeapon from './list/ListWeapon';
+import ListPet from './list/ListPet';
+import ListMonster from './list/ListMonster';
+import ListDormitory from './list/ListDormitory';
+import ListFurniture from './list/ListFurniture';
+import ListProp from './list/ListProp';
+import ListCollection from './list/ListCollection';
 
 import type { TabsProps } from 'antd';
 

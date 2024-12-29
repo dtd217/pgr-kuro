@@ -2,17 +2,17 @@ import Layout from "../Layout/Layout"
 import '../Css/Search.css'
 import { Menu } from 'antd';
 import { Link } from "react-router-dom";
-import ListAircraft from "../Components/ListAircraft";
+import ListAircraft from "../Components/list/ListAircraft";
 
 import { useState } from "react";
-import ListAwareness from "../Components/ListAwareness";
-import ListWeapon from "../Components/ListWeapon";
-import ListPet from "../Components/ListPet";
-import ListMonster from "../Components/ListMonster";
-import ListDormitory from "../Components/ListDormitory";
-import ListFurniture from "../Components/ListFurniture";
-import ListProp from "../Components/ListProp";
-import ListCollection from "../Components/ListCollection";
+import ListAwareness from "../Components/list/ListAwareness";
+import ListWeapon from "../Components/list/ListWeapon";
+import ListPet from "../Components/list/ListPet";
+import ListMonster from "../Components/list/ListMonster";
+import ListDormitory from "../Components/list/ListDormitory";
+import ListFurniture from "../Components/list/ListFurniture";
+import ListProp from "../Components/list/ListProp";
+import ListCollection from "../Components/list/ListCollection";
 import TabMenu from "../Components/TabMenu";
 
 const Search = () => {
@@ -120,8 +120,6 @@ const Search = () => {
    const title = items
       .find(item => item.children && item.children.some((child: any) => child.key === searchId))
       ?.children.find((child: any) => child.key === searchId)?.label;
-
-      console.log(data.type.name)
 
    return (
       <Layout>

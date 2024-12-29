@@ -1,3 +1,25 @@
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 0px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #fff;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #333333;
+  border-radius: 8px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
 /* Aircraft */
 .single .ant-tabs-nav-list {
   gap: 8px;
@@ -80,7 +102,7 @@
   justify-content: center;
 }
 
-.ant-collapse-arrow>* {
+.ant-collapse-arrow > * {
   width: 20px !important;
   height: 20px !important;
   color: white;
