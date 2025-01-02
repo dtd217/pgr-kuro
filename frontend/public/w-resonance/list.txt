@@ -1,0 +1,75 @@
+1 - Glorious Afterglow
+Final ATK of the weapon increases by 30% for 8s upon a 3-ping. Duration resets upon a repeated trigger.
+
+2 - Glorious Spear
+When using a healing skill or effect, increases Full ATK of the healed target by 10% for 8s, CD for 10s.
+
+3 - Superconducting Axial Ray
+Increases Full ATK of all characters of the team by 8%. This effect does not stack.
+
+5 - Stellar Magnetic Rail
+On QTE, restores dodge gauge by 400 for the Construct in control.
+
+7 - Resonant Echo
+The duration of effect inflicted by Tank class skill increases to 8s. Repeated triggering refreshes the duration.
+
+8 - Polymerization Collapse
+Inflicts Smash effect upon dealing Physical DMG. Smash: reduces the target's Physical Resistance by 8% for 8s. Repeated triggering refreshes the duration.
+
+9 - Diode Torch
+Inflicts Embers effect upon dealing Fire DMG. Embers: reduces the target's Fire Resistance by 8% for 8s. Repeated triggering refreshes the duration.
+
+10 - Bose Hyperflow
+Inflicts Chilly effect upon dealing Ice DMG. Chilly: reduces the target's Ice Resistance by 8% for 8s. Repeated triggering refreshes the duration.
+
+11 - Thunder Shake
+Inflicts Thunder effect upon dealing Lightning DMG. Thunder: reduces the target's Lightning Resistance by 8% for 8s. Repeated triggering refreshes the duration.
+
+12 - Tenebrion Shock
+Inflicts Dark Wave effect upon dealing Dark DMG. Dark Wave: reduces the target's Dark Resistance by 8% for 8s. Repeated triggering refreshes the duration.
+
+13 - Boundary's Annihilation
+On QTE, shields the Construct in control for 10% of the skill user's max HP for 5s.
+
+17 - Dead Line Timing
+Gains 2 extra random Signal Orbs when deployed, and 3 Signal Orbs of the same color every 45s (also gains Signal Orbs on standby).
+
+22 - Overload Signal
+An Entrance Skill grants 1 additional Signal Orb. Extra DMG Bonus of Signal Orb Skills increases by 10% for 8s.
+
+23 - Incandescence
+Weapon's final ATK increases by 15% at the start of battle. No duration limit.
+
+23 - Limit Break
+Full ATK increases by 10%.
+
+24 - Precision Attack I, II, III
+ATK +30, CRIT +30
+
+25 - Matrix Lightning
+Movement Speed greatly increases and all enemies' Extra DMG Reduction decreases by 10% in Matrix.
+
+25 - Matrix Outburst
+Extra DMG Bonus increases by 15% in Matrix.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
